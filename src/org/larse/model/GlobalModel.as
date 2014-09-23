@@ -1,6 +1,7 @@
 package org.larse.model
 {
 	import flash.events.EventDispatcher;
+	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
 	
@@ -8,6 +9,7 @@ package org.larse.model
 	import org.larse.events.TimeSyncEvent;
 	import org.larse.tsclass.ImageChip;
 	import org.larse.vos.Interpreter;
+	import org.larse.vos.TimeSyncTask;
 
 	[Bindable]
 	[Event(name="assignment_changed",type="org.larse.events.ProjectEvent")]
@@ -83,6 +85,20 @@ package org.larse.model
 		public function set assignments(value:ArrayCollection):void {
 			_assignments = value;
 			this.dispatchEvent(new ProjectEvent(ProjectEvent.ASSIGNMENT_CHANGED, true, true));
+		}
+		
+		//07.30.2014
+		public function get ActiveProjects():ArrayCollection {
+			var len:Number = _assignments.length;
+			var dic:Dictionary = new Dictionary();
+			for each (var tst:TimeSyncTask in _assignments) {
+				dic[tst.project_id] = tst;
+			}
+			var unique:ArrayCollection = new ArrayCollection();
+			for each (var utst:TimeSyncTask in dic) {
+				unique.addItem(utst);
+			}
+			return unique;
 		}
 		
 		//02.20.2013,

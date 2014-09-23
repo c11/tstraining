@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<larse:CustomTitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+						 xmlns:s="library://ns.adobe.com/flex/spark"
+						 xmlns:mx="library://ns.adobe.com/flex/mx"
+						 xmlns:larse="org.larse.containers.customtitlewindow.*"
+						 xmlns:parsley="http://www.spicefactory.org/parsley"
+						 minHeight="480" maxHeight="480"
+						 minWidth="460" maxWidth="460"
+						 width="460" height="480"
+						 creationComplete="init()"
+						 close="handleClose(event)">
+	
+	<fx:Declarations>
+		<parsley:Configure/>
+	</fx:Declarations>
+	
+	<fx:Metadata>
+		
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			
+			import org.larse.events.ImageListEvent;
+			import org.larse.model.GlobalModel;
+			import org.larse.model.ImageListModel;
+			
+			[Inject][Bindable]
+			public var global:GlobalModel;
+			
+			private function init():void {		
+
+			}
+			
+			protected function onProjectChanged(event:Event):void {
+				
+			}
+			
+			protected function handleClose(event:CloseEvent):void {
+				PopUpManager.removePopUp(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:Label x="68" y="35" fontSize="15" fontWeight="bold" text="Project:" verticalAlign="middle"/>
+	<s:DropDownList id="dropdownProject" x="152" y="33" width="217" change="onProjectChanged(event)"
+					dataProvider="{global.ActiveProjects}"
+					labelField="project_code"/>
+	
+	<s:DropDownList id="dropdownScenes" width="80"/>
+	
+	<s:Button x="68" y="93" width="301" height="24" label="Get KML"/>
+
+	
+</larse:CustomTitleWindow>

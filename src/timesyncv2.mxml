@@ -19,6 +19,13 @@
 			<parsley:FlexConfig type="{TimeSyncContext}"/>
 			<parsley:RuntimeConfig instances="{[service]}"/> 
 		</parsley:ContextBuilder>
+		<s:HTTPService id="dataRequest" url="{kmlScript}" method="POST">
+			<s:request xmlns="">
+				<pid>{global.project_id}</pid>
+			</s:request>
+		</s:HTTPService>
+		
+		
 	</fx:Declarations>
 	
 	<fx:Metadata>
@@ -45,7 +52,9 @@
 			import mx.events.MenuEvent;
 			import mx.events.SliderEvent;
 			import mx.managers.PopUpManager;
+			import mx.rpc.http.mxml.HTTPService;
 			
+			import org.larse.components.UploadWindow;
 			import org.larse.components.VertexHistoryWindow;
 			import org.larse.events.ImageListEvent;
 			import org.larse.events.PlotEvent;
@@ -103,7 +112,16 @@
 			
 			private var gateway:String = "http://timesync.forestry.oregonstate.edu/training/gateway21-training.php";
 			private var server:String = "http://timesync.forestry.oregonstate.edu/";
-
+			
+			[Bindable]
+			private var uploadScript:String = "http://timesync.forestry.oregonstate.edu/training2/plot_upload.php";
+			
+			[Bindable]
+			private var kmlScript:String = "http://timesync.forestry.oregonstate.edu/training2/exportkml.php";
+			
+			[Bindable]
+			private var tsScript:String = "http://timesync.forestry.oregonstate.edu/training2/exportts.php";
+			
 			//private var gateway:String = "http://localhost:8888/timesync-debug/gateway.php";
 			//private var server:String = "http://localhost:8888/";	
 
@@ -453,6 +471,8 @@
 					trajectory.clearTrajectory();
 					plotsGrid.examplesOnly = false;
 				}
+				
+				datamenu.enabled = true;
 			}
 			
 			protected function onSceneSelected(event:IndexChangeEvent):void
@@ -651,6 +671,49 @@
 				}
 			}
 			
+			// handle data management functions
+			protected function datamenu_itemClickHandler(event:MenuEvent):void
+			{
+				if (event.label == "Upload Plots") {
+					uploadPlots();
+				}
+				else if (event.label == "Get KML") {
+					getKML();
+				}
+				else if (event.label == "Export Interpretation") {
+					exportData();
+				}
+			}
+			
+			private function uploadPlots():void {
+				var uploadWin:UploadWindow = new UploadWindow();
+
+				uploadWin.title = "Upload Plot File";
+				uploadWin.resizeEnabled = false;
+				uploadWin.mouseEnabled = true;
+				uploadWin.enforceBoundaries = false;
+				uploadWin.serverSideScript = uploadScript;
+				
+				context.viewManager.addViewRoot(uploadWin);
+				
+				PopUpManager.addPopUp(uploadWin, this);
+				PopUpManager.centerPopUp(uploadWin);
+				
+			}
+			
+			private function getKML():void {
+				var req:URLRequest = new URLRequest(kmlScript);
+				req.data = new URLVariables("pid=" + global.project_id);
+				navigateToURL(req, "_self");
+			}
+			
+			private function exportData():void {
+				var req:URLRequest = new URLRequest(tsScript);
+				req.data = new URLVariables("pid=" + global.project_id + '&uid=' + global.interpreter.user_id);
+				navigateToURL(req, "_self");
+			}
+			
+			
 		]]>
 	</fx:Script>
 	<s:VGroup includeIn="App" width="100%" height="100%" paddingBottom="10" paddingLeft="10"
@@ -684,6 +747,16 @@
 				<s:Button label="Logout" click="onLogout(event)"/>
 -->				
 				
+				<mx:MenuBar id="datamenu" labelField="@label" itemClick="datamenu_itemClickHandler(event)" enabled="false">
+					<fx:XMLList>
+						<menuitem label="Data">
+							<menuitem label="Upload Plots"/>
+							<menuitem label="Get KML"/>
+							<menuitem label="Export Interpretation"/>
+						</menuitem>
+					</fx:XMLList>
+				</mx:MenuBar>
+				
 				<!--
 				<s:Button label="Help" click="gotoHelp(event)"/>
 				-->
@@ -695,6 +768,7 @@
 						</menuitem>
 					</fx:XMLList>
 				</mx:MenuBar>
+				
 				<!--
 				<s:ToggleButton label="Google Earth" click="showMap(event)"/>
 				-->

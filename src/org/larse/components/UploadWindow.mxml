@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<larse:CustomTitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+						 xmlns:s="library://ns.adobe.com/flex/spark"
+						 xmlns:mx="library://ns.adobe.com/flex/mx"
+						 xmlns:larse="org.larse.containers.customtitlewindow.*"
+						 xmlns:parsley="http://www.spicefactory.org/parsley"
+						 minHeight="480" maxHeight="480"
+						 minWidth="460" maxWidth="460"
+						 width="460" height="480"
+						 creationComplete="init()"
+						 close="handleClose(event)">
+	
+	<fx:Declarations>
+		<parsley:Configure/>
+	</fx:Declarations>
+	
+	<fx:Metadata>
+
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+			
+			import org.larse.events.ImageListEvent;
+			import org.larse.model.GlobalModel;
+			import org.larse.model.ImageListModel;
+			
+			[Inject][Bindable]
+			public var global:GlobalModel;
+			
+			private var fileReferenceList:FileReferenceList;
+			
+			public var serverSideScript:String = "upload_plots.php";
+			
+			private var _chips:ArrayCollection = new ArrayCollection();
+			
+			
+			private function init():void {		
+				fileReferenceList = new FileReferenceList();
+				fileReferenceList.addEventListener(Event.SELECT, fileSelectedHandler);
+				
+			}
+			
+			private function fileSelectedHandler(event:Event):void {
+				var fileReference:FileReference;
+				var fileReferenceList:FileReferenceList = FileReferenceList(event.target);
+				var fileList:Array = fileReferenceList.fileList;
+				
+				fileReference = FileReference(fileList[0]);
+				
+				fileReference.addEventListener(Event.COMPLETE, uploadCompleteHandler);
+				
+				fileReference.upload(new URLRequest(serverSideScript));
+				
+				message.text = "Uploading ...";
+			}
+			
+			private function uploadCompleteHandler(event:Event):void {
+				message.text = "File uploaded: " + event.target.name;
+			}
+			
+			protected function handleClose(event:CloseEvent):void {
+				PopUpManager.removePopUp(this);
+			}
+			
+			protected function uploadFile(event:MouseEvent):void
+			{
+				fileReferenceList.browse();
+			}
+			
+			protected function onProjectChanged(event:Event):void {
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<s:Label x="68" y="35" fontSize="15" fontWeight="bold" text="Project:" verticalAlign="middle"/>
+	<s:DropDownList id="dropdownProject" x="152" y="33" width="217" change="onProjectChanged(event)"
+					dataProvider="{global.ActiveProjects}"
+					labelField="project_code"/>
+	
+	<s:Button x="68" y="93" width="301" height="24" label="Select Plot File"
+			  click="uploadFile(event)"/>
+	<s:RichText x="68" y="188" width="301" height="212" backgroundColor="#E1DFDF">
+		<s:div>
+			<s:span fontWeight="bold">
+				Required File Format
+			</s:span>
+			<s:br/>
+			<s:br/>
+			<s:span>
+				Only csv files with the following format is accepted:
+			</s:span>
+			<s:br/>
+			<s:br/>
+			<s:div>
+				header line is required: plotid, ppprrr, longitude, latitude     
+			</s:div>
+			<s:br/>
+			<s:br/>
+			<s:span>
+				each of the following line represents a plot
+			</s:span>
+		</s:div>
+	</s:RichText>
+	<s:Label x="68" y="148" width="301" id="message" text=""/>
+	
+	
+	
+</larse:CustomTitleWindow>

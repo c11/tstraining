@@ -25,6 +25,7 @@
 			<fx:String>Harvest</fx:String>
 			<fx:String>Fire</fx:String>
 			<fx:String>Stress</fx:String>
+			<fx:String>Site-preparation Fire</fx:String>
 			<fx:String>Delay</fx:String>
 			<fx:String>Mechanical</fx:String>
 			<fx:String>Other disturbance</fx:String>
