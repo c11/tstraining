@@ -4,11 +4,11 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:parsley="http://www.spicefactory.org/parsley"
 			   xmlns:ts="org.larse.components.*"
-			   minWidth="955" minHeight="600"
-			   creationComplete="initApp(event)" currentState="login">
-	
+			   minWidth="955" minHeight="600" creationComplete="initApp(event)" currentState="login"
+			   >
+	<!--
 	<fx:Style source="timesync.css"/>
-	
+	-->
 	<s:states>
 		<s:State name="App" enterState="initMenu(event)"/>
 		<s:State name="login"/>
@@ -114,13 +114,13 @@
 			private var server:String = "http://timesync.forestry.oregonstate.edu/";
 			
 			[Bindable]
-			private var uploadScript:String = "http://timesync.forestry.oregonstate.edu/training2/plot_upload.php";
+			private var uploadScript:String = "plot_upload.php";
 			
 			[Bindable]
-			private var kmlScript:String = "http://timesync.forestry.oregonstate.edu/training2/exportkml.php";
+			private var kmlScript:String = "exportkml.php";
 			
 			[Bindable]
-			private var tsScript:String = "http://timesync.forestry.oregonstate.edu/training2/exportts.php";
+			private var tsScript:String = "exportts.php";
 			
 			//private var gateway:String = "http://localhost:8888/timesync-debug/gateway.php";
 			//private var server:String = "http://localhost:8888/";	
@@ -545,7 +545,11 @@
 			
 			private function saveInterpretations(plot:Plot, force:Boolean=false):void {
 				if (global.user_id == 9999) //disable save for viewer
-					return; 
+					return;
+				
+				//TODO: temporary fix for training read only access
+				if (global.project_id == 10000 && global.user_id != 1024) //disable save for demo account
+					return;
 				
 				if (plot.isModified || plot.isDirty || force || global.user_role == GlobalModel.ARBITOR) {
 					//TODO: check to make sure both vertex and neighbor and comments are saved.
@@ -716,6 +720,11 @@
 			
 		]]>
 	</fx:Script>
+	
+	<s:BitmapImage width="100%" height="100%" source="@Embed('stars.jpg')" fillMode="repeat" visible.login="true" visible.App="false"/>
+	<s:BitmapImage width="900" height="900" source="@Embed('globe.png')" visible.login="true" visible.App="false"
+				   top="0" horizontalCenter="0"/>
+	
 	<s:VGroup includeIn="App" width="100%" height="100%" paddingBottom="10" paddingLeft="10"
 			  paddingRight="10">
 		<mx:ControlBar width="100%" height="35">
@@ -764,7 +773,9 @@
 					<fx:XMLList>
 						<menuitem label="Help">
 							<menuitem label="Definitions"/>
+							<!--
 							<menuitem label="FAQs"/>
+							-->
 						</menuitem>
 					</fx:XMLList>
 				</mx:MenuBar>
@@ -813,7 +824,7 @@
 			</mx:VDividedBox>
 		</mx:HDividedBox>
 	</s:VGroup>
-	<s:Panel title="TimeSync Login" includeIn="login" width="300" height="250" horizontalCenter="-39" verticalCenter="-36">
+	<s:Panel title="TimeSync Training Application" includeIn="login" width="300" height="250" horizontalCenter="-39" verticalCenter="-36">
 		<s:VGroup x="0" y="0" width="100%" paddingLeft="50" paddingTop="25">
 			<s:Label text="User Name"/>
 			<s:TextInput id="txtUser" width="200"/>

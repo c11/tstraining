@@ -96,6 +96,9 @@
 			
 			protected function onImageClicked(event:MouseEvent):void
 			{
+				if (global.project_id == 10000 && global.user_id != 1024) //do not allow change image priority for demo project
+					return;
+				
 				if (global.user_id != 9999) {
 					var ic:ImageChip = data as ImageChip;
 					var old_year:int = -1;

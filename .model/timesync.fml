@@ -3,6 +3,524 @@
   <annotation name="ActionScriptGeneration">
     <item name="FullyQualifyReferences">true</item>
   </annotation>
+  <service name="CommentService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">CommentService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">org.larse.services</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">CommentService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/CommentService.php</item>
+      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
+      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
+      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/CommentService.php</item>
+      <item name="LINKED_FILE">CommentService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">CommentService</item>
+    </annotation>
+    <function name="createComments" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,opaque,opaque,opaque,opaque,opaque,opaque,opaque</item>
+        <item name="returnType">integer</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="plotid" type="integer"/>
+      <parameter name="interpreter" type="integer"/>
+      <parameter name="comment" type="string"/>
+      <parameter name="is_example" type="integer"/>
+      <parameter name="is_complete" type="integer"/>
+      <parameter name="is_wetland" type="integer"/>
+      <parameter name="uncertainty" type="integer"/>
+    </function>
+    <function name="getComment" return-type="PlotComments">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,integer,integer</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">tsa,interpreter,plotid,project_id,is_example,is_wetland,comment,uncertainty,is_complete</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="plotid" type="integer"/>
+      <parameter name="interpreter" type="integer"/>
+    </function>
+  </service>
+  <entity name="PlotComments">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">PlotComments</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">CommentService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="getComment">
+      <item name="propertySpecifier">tsa,interpreter,plotid,project_id,is_example,is_wetland,comment,uncertainty,is_complete</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">org.larse.vos</item>
+    </annotation>
+    <property name="tsa" type="integer" required="true"/>
+    <property name="interpreter" type="integer" required="true"/>
+    <property name="plotid" type="integer" required="true"/>
+    <property name="project_id" type="integer" required="true"/>
+    <property name="is_example" type="integer" required="true"/>
+    <property name="is_wetland" type="integer" required="true"/>
+    <property name="comment" type="string" required="true"/>
+    <property name="uncertainty" type="integer" required="true"/>
+    <property name="is_complete" type="integer" required="true"/>
+  </entity>
+  <service name="RegionSpectralService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">RegionSpectralService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">org.larse.services</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">RegionSpectralService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/RegionSpectralService.php</item>
+      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
+      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
+      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/RegionSpectralService.php</item>
+      <item name="LINKED_FILE">RegionSpectralService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">RegionSpectralService</item>
+    </annotation>
+    <function name="getRegionSpectralByPlot" return-type="RegionSpectral[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">tcg,tsa,target_day,image_julday,plotid,b3,b2,b5,b4,tcb,b7,sensor,selected,tcw,image_year,project_id,b1,spectral_scaler,cloud_cover</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,integer</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="plotid" type="integer"/>
+    </function>
+    <function name="getAllRegionSpectralByPlot" return-type="RegionSpectral[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">tcg,tsa,image_julday,plotid,b3,b2,b5,b4,tcb,b7,sensor,tcw,image_year,project_id,b1,spectral_scaler,cloud_cover</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,integer</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="plotid" type="integer"/>
+    </function>
+    <function name="overrideImagePriority" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,integer,integer,integer,integer,integer</item>
+        <item name="returnType">integer</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="plotid" type="integer"/>
+      <parameter name="year" type="integer"/>
+      <parameter name="day" type="integer"/>
+      <parameter name="oldYear" type="integer"/>
+      <parameter name="oldDay" type="integer"/>
+    </function>
+    <function name="getAllRegionSpectralByPlotForYear" return-type="RegionSpectral[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">tcg,tsa,image_julday,plotid,b3,b2,b5,b4,tcb,b7,sensor,selected,tcw,image_year,project_id,b1,spectral_scaler,cloud_cover</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,integer,integer</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="plotid" type="integer"/>
+      <parameter name="year" type="integer"/>
+    </function>
+  </service>
+  <entity name="RegionSpectral">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">RegionSpectral</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">RegionSpectralService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="getRegionSpectralByPlot">
+      <item name="propertySpecifier">tcg,tsa,target_day,image_julday,plotid,b3,b2,b5,b4,tcb,b7,sensor,selected,tcw,image_year,project_id,b1,spectral_scaler,cloud_cover</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">org.larse.vos</item>
+    </annotation>
+    <annotation name="getAllRegionSpectralByPlot">
+      <item name="propertySpecifier">tcg,tsa,image_julday,plotid,b3,b2,b5,b4,tcb,b7,sensor,tcw,image_year,project_id,b1,spectral_scaler,cloud_cover</item>
+    </annotation>
+    <annotation name="getAllRegionSpectralByPlotForYear">
+      <item name="propertySpecifier">tcg,tsa,image_julday,plotid,b3,b2,b5,b4,tcb,b7,sensor,selected,tcw,image_year,project_id,b1,spectral_scaler,cloud_cover</item>
+    </annotation>
+    <property name="tcg" type="string" required="true"/>
+    <property name="tsa" type="integer" required="true"/>
+    <property name="target_day" type="integer" required="true"/>
+    <property name="image_julday" type="integer" required="true"/>
+    <property name="plotid" type="integer" required="true"/>
+    <property name="b3" type="string" required="true"/>
+    <property name="b2" type="string" required="true"/>
+    <property name="b5" type="string" required="true"/>
+    <property name="b4" type="string" required="true"/>
+    <property name="tcb" type="string" required="true"/>
+    <property name="b7" type="string" required="true"/>
+    <property name="sensor" type="string" required="true"/>
+    <property name="selected" type="integer" required="true"/>
+    <property name="tcw" type="string" required="true"/>
+    <property name="image_year" type="integer" required="true"/>
+    <property name="project_id" type="integer" required="true"/>
+    <property name="b1" type="string" required="true"/>
+    <property name="spectral_scaler" type="integer" required="true"/>
+    <property name="cloud_cover" type="integer" required="true"/>
+  </entity>
+  <service name="PlotsService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">PlotsService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">org.larse.services</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">PlotsService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/PlotsService.php</item>
+      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
+      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
+      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/PlotsService.php</item>
+      <item name="LINKED_FILE">PlotsService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">PlotsService</item>
+    </annotation>
+    <function name="count" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getAllPlots" return-type="Plot[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">tsa,is_forest,plotid,is_tiger_urban,is_example,is_wetland,lng,is_complete,project_id,y,lat,uncertainty,x</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+        <item name="inputParams">integer,integer,integer</item>
+        <item name="inputParamNames">tsa</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="interpreter" type="integer"/>
+    </function>
+  </service>
+  <entity name="Plot">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Plot</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">PlotsService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="getAllPlots">
+      <item name="propertySpecifier">tsa,is_forest,plotid,is_tiger_urban,is_example,is_wetland,lng,is_complete,project_id,y,lat,uncertainty,x</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">org.larse.vos</item>
+    </annotation>
+    <property name="tsa" type="integer" required="true"/>
+    <property name="is_forest" type="integer" required="true"/>
+    <property name="plotid" type="integer" required="true"/>
+    <property name="is_tiger_urban" type="integer" required="true"/>
+    <property name="is_example" type="integer" required="true"/>
+    <property name="is_wetland" type="integer" required="true"/>
+    <property name="lng" type="double" required="true" default="0"/>
+    <property name="is_complete" type="integer" required="true"/>
+    <property name="project_id" type="integer" required="true"/>
+    <property name="y" type="double" required="true" default="0"/>
+    <property name="lat" type="double" required="true" default="0"/>
+    <property name="uncertainty" type="integer" required="true"/>
+    <property name="x" type="double" required="true" default="0"/>
+  </entity>
+  <service name="NeighborService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">NeighborService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">org.larse.services</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">NeighborService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/NeighborService.php</item>
+      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
+      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
+      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/NeighborService.php</item>
+      <item name="LINKED_FILE">NeighborService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">NeighborService</item>
+    </annotation>
+    <function name="createNeighbors" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,integer,integer,string</item>
+        <item name="returnType">integer</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="plotid" type="integer"/>
+      <parameter name="interpreter" type="integer"/>
+      <parameter name="sqlstr" type="string"/>
+    </function>
+    <function name="removeAllNeighborsForPlot" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,integer,integer</item>
+        <item name="returnType">integer</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="plotid" type="integer"/>
+      <parameter name="interpreter" type="integer"/>
+    </function>
+    <function name="getNeighborForPlot" return-type="Neighbor[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">tsa,image_julday,plotid,neighbor_id,change_process,patch_size,interpreter,image_year,relative_magnitude,project_id,centroid_direction,plot_included,comments</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,integer,integer</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="plotid" type="integer"/>
+      <parameter name="interpreter" type="integer"/>
+    </function>
+    <function name="getAllNeighbors" return-type="Neighbor[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">tsa,image_julday,plotid,neighbor_id,change_process,patch_size,interpreter,image_year,relative_magnitude,project_id,centroid_direction,plot_included,comments</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+  </service>
+  <entity name="Neighbor">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Neighbor</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">NeighborService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="getAllNeighbors">
+      <item name="propertySpecifier">tsa,image_julday,plotid,neighbor_id,change_process,patch_size,interpreter,image_year,relative_magnitude,project_id,centroid_direction,plot_included,comments</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">org.larse.vos</item>
+    </annotation>
+    <annotation name="getNeighborForPlot">
+      <item name="propertySpecifier">tsa,image_julday,plotid,neighbor_id,change_process,patch_size,interpreter,image_year,relative_magnitude,project_id,centroid_direction,plot_included,comments</item>
+    </annotation>
+    <property name="tsa" type="integer" required="true"/>
+    <property name="image_julday" type="integer" required="true"/>
+    <property name="plotid" type="integer" required="true"/>
+    <property name="neighbor_id" type="integer" required="true"/>
+    <property name="change_process" type="string" required="true"/>
+    <property name="patch_size" type="string" required="true"/>
+    <property name="interpreter" type="integer" required="true"/>
+    <property name="image_year" type="integer" required="true"/>
+    <property name="relative_magnitude" type="string" required="true"/>
+    <property name="project_id" type="integer" required="true"/>
+    <property name="centroid_direction" type="integer" required="true"/>
+    <property name="plot_included" type="integer" required="true"/>
+    <property name="comments" type="string" required="true"/>
+  </entity>
+  <service name="VertexService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">VertexService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">org.larse.services</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">VertexService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/VertexService.php</item>
+      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
+      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
+      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/VertexService.php</item>
+      <item name="LINKED_FILE">VertexService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">VertexService</item>
+    </annotation>
+    <function name="createVertices" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,integer,integer,string,integer</item>
+        <item name="returnType">integer</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="plotid" type="integer"/>
+      <parameter name="interpreter" type="integer"/>
+      <parameter name="sqlstr" type="string"/>
+      <parameter name="history_flag" type="integer"/>
+    </function>
+    <function name="removeAllVerticesForPlot" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,integer,integer</item>
+        <item name="returnType">integer</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="plotid" type="integer"/>
+      <parameter name="interpreter" type="integer"/>
+    </function>
+    <function name="getVerticesForPlot" return-type="Vertex[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">tsa,dominant_landcover,dominant_landcover_over50,image_julday,plotid,dominant_landuse,change_process,patch_size,other_landcover,interpreter,image_year,dominant_landuse_over50,relative_magnitude,date_confidence,landcover_ephemeral,project_id,vertex_id,other_landuse,landuse_confidence,change_process_confidence,comments,landcover_confidence</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,integer,integer,integer</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+      <parameter name="plotid" type="integer"/>
+      <parameter name="interpreter" type="integer"/>
+      <parameter name="history_flag" type="integer"/>
+    </function>
+    <function name="getAllVertices" return-type="Vertex[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">dominant_landcover,dominant_landcover_over50,image_julday,plotid,dominant_landuse,change_process,other_landcover,image_year,dominant_landuse_over50,date_confidence,landcover_ephemeral,vertex_id,other_landuse,landuse_confidence,change_process_confidence,comments,landcover_confidence</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+  </service>
+  <entity name="Vertex">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Vertex</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">VertexService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="getAllVertices">
+      <item name="propertySpecifier">dominant_landcover,dominant_landcover_over50,image_julday,plotid,dominant_landuse,change_process,other_landcover,image_year,dominant_landuse_over50,date_confidence,landcover_ephemeral,vertex_id,other_landuse,landuse_confidence,change_process_confidence,comments,landcover_confidence</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">org.larse.vos</item>
+    </annotation>
+    <annotation name="getVerticesForPlot">
+      <item name="propertySpecifier">tsa,dominant_landcover,dominant_landcover_over50,image_julday,plotid,dominant_landuse,change_process,patch_size,other_landcover,interpreter,image_year,dominant_landuse_over50,relative_magnitude,date_confidence,landcover_ephemeral,project_id,vertex_id,other_landuse,landuse_confidence,change_process_confidence,comments,landcover_confidence</item>
+    </annotation>
+    <property name="tsa" type="integer" required="true"/>
+    <property name="dominant_landcover" type="string" required="true"/>
+    <property name="dominant_landcover_over50" type="integer" required="true"/>
+    <property name="image_julday" type="integer" required="true"/>
+    <property name="plotid" type="integer" required="true"/>
+    <property name="dominant_landuse" type="string" required="true"/>
+    <property name="change_process" type="string" required="true"/>
+    <property name="patch_size" type="integer" required="true"/>
+    <property name="other_landcover" type="string" required="true"/>
+    <property name="interpreter" type="integer" required="true"/>
+    <property name="image_year" type="integer" required="true"/>
+    <property name="dominant_landuse_over50" type="integer" required="true"/>
+    <property name="relative_magnitude" type="integer" required="true"/>
+    <property name="date_confidence" type="string" required="true"/>
+    <property name="landcover_ephemeral" type="integer" required="true"/>
+    <property name="project_id" type="integer" required="true"/>
+    <property name="vertex_id" type="integer" required="true"/>
+    <property name="other_landuse" type="string" required="true"/>
+    <property name="landuse_confidence" type="string" required="true"/>
+    <property name="change_process_confidence" type="string" required="true"/>
+    <property name="comments" type="string" required="true"/>
+    <property name="landcover_confidence" type="string" required="true"/>
+  </entity>
   <service name="TimeSyncService">
     <annotation name="ActionScriptGeneration">
       <item name="Source">TimeSyncService</item>
@@ -34,6 +552,206 @@
       </annotation>
     </function>
   </service>
+  <service name="SpectralPropertyService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">SpectralPropertyService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">org.larse.services</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">SpectralPropertyService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/SpectralPropertyService.php</item>
+      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
+      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
+      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/SpectralPropertyService.php</item>
+      <item name="LINKED_FILE">SpectralPropertyService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">SpectralPropertyService</item>
+    </annotation>
+    <function name="getSpectralProperties" return-type="SpectralProperty[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">spectral_id,spectral_std,spectral_mean,spectral_max,spectral_min,spectral_name</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+  </service>
+  <entity name="SpectralProperty">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SpectralProperty</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">SpectralPropertyService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="getSpectralProperties">
+      <item name="propertySpecifier">spectral_id,spectral_std,spectral_mean,spectral_max,spectral_min,spectral_name</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">org.larse.vos</item>
+    </annotation>
+    <property name="spectral_id" type="integer" required="true"/>
+    <property name="spectral_std" type="double" required="true" default="0"/>
+    <property name="spectral_mean" type="double" required="true" default="0"/>
+    <property name="spectral_max" type="double" required="true" default="0"/>
+    <property name="spectral_min" type="double" required="true" default="0"/>
+    <property name="spectral_name" type="string" required="true"/>
+  </entity>
+  <service name="UserService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">UserService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">org.larse.services</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">UserService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/UserService.php</item>
+      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
+      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
+      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/UserService.php</item>
+      <item name="LINKED_FILE">UserService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">UserService</item>
+    </annotation>
+    <function name="getAllInterpreter" return-type="Interpreter[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">first_name,user_name,last_name,user_id,password</item>
+      </annotation>
+    </function>
+    <function name="getUserByCredential" return-type="Interpreter">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,string</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">first_name,user_name,last_name,user_id,password</item>
+      </annotation>
+      <parameter name="user_name" type="string"/>
+      <parameter name="pass" type="string"/>
+    </function>
+    <function name="addUser" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">integer</item>
+      </annotation>
+      <parameter name="interpreter" type="Interpreter"/>
+    </function>
+  </service>
+  <entity name="Interpreter">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Interpreter</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">UserService,UserServiceDummy</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="getAllInterpreter">
+      <item name="propertySpecifier">first_name,user_name,last_name,user_id,password</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">org.larse.vos</item>
+    </annotation>
+    <annotation name="getUserByCredential">
+      <item name="propertySpecifier">first_name,user_name,last_name,user_id,password</item>
+    </annotation>
+    <property name="first_name" type="string" required="true"/>
+    <property name="user_name" type="string" required="true"/>
+    <property name="last_name" type="string" required="true"/>
+    <property name="user_id" type="integer" required="true"/>
+    <property name="password" type="string" required="true"/>
+  </entity>
+  <service name="ImageListService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">ImageListService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">org.larse.services</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">ImageListService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/ImageListService.php</item>
+      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
+      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
+      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/ImageListService.php</item>
+      <item name="LINKED_FILE">ImageListService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">ImageListService</item>
+    </annotation>
+    <function name="getImageList" return-type="ImageList[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">tsa,project_id,year,julday,type</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+        <item name="inputParams">integer,integer</item>
+        <item name="inputParamNames">project_id,tsa</item>
+      </annotation>
+      <parameter name="project_id" type="integer"/>
+      <parameter name="tsa" type="integer"/>
+    </function>
+  </service>
+  <entity name="ImageList">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">ImageList</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">ImageListService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="getImageList">
+      <item name="propertySpecifier">tsa,project_id,year,julday,type</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">org.larse.vos</item>
+    </annotation>
+    <property name="tsa" type="integer" required="true"/>
+    <property name="project_id" type="integer" required="true"/>
+    <property name="year" type="integer" required="true"/>
+    <property name="julday" type="integer" required="true"/>
+    <property name="type" type="string" required="true"/>
+  </entity>
   <service name="ProjectService">
     <annotation name="ActionScriptGeneration">
       <item name="Source">ProjectService</item>
@@ -206,723 +924,5 @@
     <property name="user_id" type="integer" required="true"/>
     <property name="project_code" type="string" required="true"/>
     <property name="contact" type="string" required="true"/>
-  </entity>
-  <service name="NeighborService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">NeighborService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">org.larse.services</item>
-      <item name="Endpoint">gateway.php</item>
-      <item name="Destination">NeighborService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">PHP</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/NeighborService.php</item>
-      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
-      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
-      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/NeighborService.php</item>
-      <item name="LINKED_FILE">NeighborService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
-      <item name="PHP_CLASS_NAME">NeighborService</item>
-    </annotation>
-    <function name="createNeighbors" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer,integer,string</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="plotid" type="integer"/>
-      <parameter name="interpreter" type="integer"/>
-      <parameter name="sqlstr" type="string"/>
-    </function>
-    <function name="removeAllNeighborsForPlot" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer,integer</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="plotid" type="integer"/>
-      <parameter name="interpreter" type="integer"/>
-    </function>
-    <function name="getNeighborForPlot" return-type="Neighbor[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">tsa,image_julday,plotid,neighbor_id,change_process,patch_size,interpreter,image_year,relative_magnitude,project_id,centroid_direction,plot_included,comments</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer,integer</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="plotid" type="integer"/>
-      <parameter name="interpreter" type="integer"/>
-    </function>
-    <function name="getAllNeighbors" return-type="Neighbor[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">tsa,image_julday,plotid,neighbor_id,change_process,patch_size,interpreter,image_year,relative_magnitude,project_id,centroid_direction,plot_included,comments</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-  </service>
-  <entity name="Neighbor">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">Neighbor</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">NeighborService</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="getAllNeighbors">
-      <item name="propertySpecifier">tsa,image_julday,plotid,neighbor_id,change_process,patch_size,interpreter,image_year,relative_magnitude,project_id,centroid_direction,plot_included,comments</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">org.larse.vos</item>
-    </annotation>
-    <annotation name="getNeighborForPlot">
-      <item name="propertySpecifier">tsa,image_julday,plotid,neighbor_id,change_process,patch_size,interpreter,image_year,relative_magnitude,project_id,centroid_direction,plot_included,comments</item>
-    </annotation>
-    <property name="tsa" type="integer" required="true"/>
-    <property name="image_julday" type="integer" required="true"/>
-    <property name="plotid" type="integer" required="true"/>
-    <property name="neighbor_id" type="integer" required="true"/>
-    <property name="change_process" type="string" required="true"/>
-    <property name="patch_size" type="string" required="true"/>
-    <property name="interpreter" type="integer" required="true"/>
-    <property name="image_year" type="integer" required="true"/>
-    <property name="relative_magnitude" type="string" required="true"/>
-    <property name="project_id" type="integer" required="true"/>
-    <property name="centroid_direction" type="integer" required="true"/>
-    <property name="plot_included" type="integer" required="true"/>
-    <property name="comments" type="string" required="true"/>
-  </entity>
-  <service name="SpectralPropertyService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">SpectralPropertyService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">org.larse.services</item>
-      <item name="Endpoint">gateway.php</item>
-      <item name="Destination">SpectralPropertyService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">PHP</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/SpectralPropertyService.php</item>
-      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
-      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
-      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/SpectralPropertyService.php</item>
-      <item name="LINKED_FILE">SpectralPropertyService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
-      <item name="PHP_CLASS_NAME">SpectralPropertyService</item>
-    </annotation>
-    <function name="getSpectralProperties" return-type="SpectralProperty[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">spectral_id,spectral_std,spectral_mean,spectral_max,spectral_min,spectral_name</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-  </service>
-  <entity name="SpectralProperty">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">SpectralProperty</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">SpectralPropertyService</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="getSpectralProperties">
-      <item name="propertySpecifier">spectral_id,spectral_std,spectral_mean,spectral_max,spectral_min,spectral_name</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">org.larse.vos</item>
-    </annotation>
-    <property name="spectral_id" type="integer" required="true"/>
-    <property name="spectral_std" type="double" required="true" default="0"/>
-    <property name="spectral_mean" type="double" required="true" default="0"/>
-    <property name="spectral_max" type="double" required="true" default="0"/>
-    <property name="spectral_min" type="double" required="true" default="0"/>
-    <property name="spectral_name" type="string" required="true"/>
-  </entity>
-  <service name="CommentService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">CommentService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">org.larse.services</item>
-      <item name="Endpoint">gateway.php</item>
-      <item name="Destination">CommentService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">PHP</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/CommentService.php</item>
-      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
-      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
-      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/CommentService.php</item>
-      <item name="LINKED_FILE">CommentService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
-      <item name="PHP_CLASS_NAME">CommentService</item>
-    </annotation>
-    <function name="createComments" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,opaque,opaque,opaque,opaque,opaque,opaque,opaque</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="plotid" type="integer"/>
-      <parameter name="interpreter" type="integer"/>
-      <parameter name="comment" type="string"/>
-      <parameter name="is_example" type="integer"/>
-      <parameter name="is_complete" type="integer"/>
-      <parameter name="is_wetland" type="integer"/>
-      <parameter name="uncertainty" type="integer"/>
-    </function>
-    <function name="getComment" return-type="PlotComments">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer,integer</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">tsa,interpreter,plotid,project_id,is_example,is_wetland,comment,uncertainty,is_complete</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="plotid" type="integer"/>
-      <parameter name="interpreter" type="integer"/>
-    </function>
-  </service>
-  <entity name="PlotComments">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">PlotComments</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">CommentService</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="getComment">
-      <item name="propertySpecifier">tsa,interpreter,plotid,project_id,is_example,is_wetland,comment,uncertainty,is_complete</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">org.larse.vos</item>
-    </annotation>
-    <property name="tsa" type="integer" required="true"/>
-    <property name="interpreter" type="integer" required="true"/>
-    <property name="plotid" type="integer" required="true"/>
-    <property name="project_id" type="integer" required="true"/>
-    <property name="is_example" type="integer" required="true"/>
-    <property name="is_wetland" type="integer" required="true"/>
-    <property name="comment" type="string" required="true"/>
-    <property name="uncertainty" type="integer" required="true"/>
-    <property name="is_complete" type="integer" required="true"/>
-  </entity>
-  <service name="UserService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">UserService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">org.larse.services</item>
-      <item name="Endpoint">gateway.php</item>
-      <item name="Destination">UserService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">PHP</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/UserService.php</item>
-      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
-      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
-      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/UserService.php</item>
-      <item name="LINKED_FILE">UserService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
-      <item name="PHP_CLASS_NAME">UserService</item>
-    </annotation>
-    <function name="getAllInterpreter" return-type="Interpreter[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">first_name,user_name,last_name,user_id,password</item>
-      </annotation>
-    </function>
-    <function name="getUserByCredential" return-type="Interpreter">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">string,string</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">first_name,user_name,last_name,user_id,password</item>
-      </annotation>
-      <parameter name="user_name" type="string"/>
-      <parameter name="pass" type="string"/>
-    </function>
-    <function name="addUser" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">opaque</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="interpreter" type="Interpreter"/>
-    </function>
-  </service>
-  <entity name="Interpreter">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">Interpreter</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">UserService,UserServiceDummy</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="getAllInterpreter">
-      <item name="propertySpecifier">first_name,user_name,last_name,user_id,password</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">org.larse.vos</item>
-    </annotation>
-    <annotation name="getUserByCredential">
-      <item name="propertySpecifier">first_name,user_name,last_name,user_id,password</item>
-    </annotation>
-    <property name="first_name" type="string" required="true"/>
-    <property name="user_name" type="string" required="true"/>
-    <property name="last_name" type="string" required="true"/>
-    <property name="user_id" type="integer" required="true"/>
-    <property name="password" type="string" required="true"/>
-  </entity>
-  <service name="VertexService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">VertexService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">org.larse.services</item>
-      <item name="Endpoint">gateway.php</item>
-      <item name="Destination">VertexService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">PHP</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/VertexService.php</item>
-      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
-      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
-      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/VertexService.php</item>
-      <item name="LINKED_FILE">VertexService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
-      <item name="PHP_CLASS_NAME">VertexService</item>
-    </annotation>
-    <function name="createVertices" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer,integer,string,integer</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="plotid" type="integer"/>
-      <parameter name="interpreter" type="integer"/>
-      <parameter name="sqlstr" type="string"/>
-      <parameter name="history_flag" type="integer"/>
-    </function>
-    <function name="removeAllVerticesForPlot" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer,integer</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="plotid" type="integer"/>
-      <parameter name="interpreter" type="integer"/>
-    </function>
-    <function name="getVerticesForPlot" return-type="Vertex[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">tsa,dominant_landcover,dominant_landcover_over50,image_julday,plotid,dominant_landuse,change_process,patch_size,other_landcover,interpreter,image_year,dominant_landuse_over50,relative_magnitude,date_confidence,landcover_ephemeral,project_id,vertex_id,other_landuse,landuse_confidence,change_process_confidence,comments,landcover_confidence</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer,integer,integer</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="plotid" type="integer"/>
-      <parameter name="interpreter" type="integer"/>
-      <parameter name="history_flag" type="integer"/>
-    </function>
-    <function name="getAllVertices" return-type="Vertex[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">dominant_landcover,dominant_landcover_over50,image_julday,plotid,dominant_landuse,change_process,other_landcover,image_year,dominant_landuse_over50,date_confidence,landcover_ephemeral,vertex_id,other_landuse,landuse_confidence,change_process_confidence,comments,landcover_confidence</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-  </service>
-  <entity name="Vertex">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">Vertex</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">VertexService</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="getAllVertices">
-      <item name="propertySpecifier">dominant_landcover,dominant_landcover_over50,image_julday,plotid,dominant_landuse,change_process,other_landcover,image_year,dominant_landuse_over50,date_confidence,landcover_ephemeral,vertex_id,other_landuse,landuse_confidence,change_process_confidence,comments,landcover_confidence</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">org.larse.vos</item>
-    </annotation>
-    <annotation name="getVerticesForPlot">
-      <item name="propertySpecifier">tsa,dominant_landcover,dominant_landcover_over50,image_julday,plotid,dominant_landuse,change_process,patch_size,other_landcover,interpreter,image_year,dominant_landuse_over50,relative_magnitude,date_confidence,landcover_ephemeral,project_id,vertex_id,other_landuse,landuse_confidence,change_process_confidence,comments,landcover_confidence</item>
-    </annotation>
-    <property name="tsa" type="integer" required="true"/>
-    <property name="dominant_landcover" type="string" required="true"/>
-    <property name="dominant_landcover_over50" type="integer" required="true"/>
-    <property name="image_julday" type="integer" required="true"/>
-    <property name="plotid" type="integer" required="true"/>
-    <property name="dominant_landuse" type="string" required="true"/>
-    <property name="change_process" type="string" required="true"/>
-    <property name="patch_size" type="integer" required="true"/>
-    <property name="other_landcover" type="string" required="true"/>
-    <property name="interpreter" type="integer" required="true"/>
-    <property name="image_year" type="integer" required="true"/>
-    <property name="dominant_landuse_over50" type="integer" required="true"/>
-    <property name="relative_magnitude" type="integer" required="true"/>
-    <property name="date_confidence" type="string" required="true"/>
-    <property name="landcover_ephemeral" type="integer" required="true"/>
-    <property name="project_id" type="integer" required="true"/>
-    <property name="vertex_id" type="integer" required="true"/>
-    <property name="other_landuse" type="string" required="true"/>
-    <property name="landuse_confidence" type="string" required="true"/>
-    <property name="change_process_confidence" type="string" required="true"/>
-    <property name="comments" type="string" required="true"/>
-    <property name="landcover_confidence" type="string" required="true"/>
-  </entity>
-  <service name="RegionSpectralService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">RegionSpectralService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">org.larse.services</item>
-      <item name="Endpoint">gateway.php</item>
-      <item name="Destination">RegionSpectralService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">PHP</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/RegionSpectralService.php</item>
-      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
-      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
-      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/RegionSpectralService.php</item>
-      <item name="LINKED_FILE">RegionSpectralService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
-      <item name="PHP_CLASS_NAME">RegionSpectralService</item>
-    </annotation>
-    <function name="getRegionSpectralByPlot" return-type="RegionSpectral[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">tcg,tsa,target_day,image_julday,plotid,b3,b2,b5,b4,tcb,b7,sensor,selected,tcw,image_year,project_id,b1,spectral_scaler,cloud_cover</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="plotid" type="integer"/>
-    </function>
-    <function name="getAllRegionSpectralByPlot" return-type="RegionSpectral[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">tcg,tsa,image_julday,plotid,b3,b2,b5,b4,tcb,b7,sensor,tcw,image_year,project_id,b1,spectral_scaler,cloud_cover</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="plotid" type="integer"/>
-    </function>
-    <function name="overrideImagePriority" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer,integer,integer,integer,integer</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="plotid" type="integer"/>
-      <parameter name="year" type="integer"/>
-      <parameter name="day" type="integer"/>
-      <parameter name="oldYear" type="integer"/>
-      <parameter name="oldDay" type="integer"/>
-    </function>
-    <function name="getAllRegionSpectralByPlotForYear" return-type="RegionSpectral[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">tcg,tsa,image_julday,plotid,b3,b2,b5,b4,tcb,b7,sensor,selected,tcw,image_year,project_id,b1,spectral_scaler,cloud_cover</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer,integer</item>
-        <item name="returnType">opaque</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="plotid" type="integer"/>
-      <parameter name="year" type="integer"/>
-    </function>
-  </service>
-  <entity name="RegionSpectral">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">RegionSpectral</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">RegionSpectralService</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="getRegionSpectralByPlot">
-      <item name="propertySpecifier">tcg,tsa,target_day,image_julday,plotid,b3,b2,b5,b4,tcb,b7,sensor,selected,tcw,image_year,project_id,b1,spectral_scaler,cloud_cover</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">org.larse.vos</item>
-    </annotation>
-    <annotation name="getAllRegionSpectralByPlot">
-      <item name="propertySpecifier">tcg,tsa,image_julday,plotid,b3,b2,b5,b4,tcb,b7,sensor,tcw,image_year,project_id,b1,spectral_scaler,cloud_cover</item>
-    </annotation>
-    <annotation name="getAllRegionSpectralByPlotForYear">
-      <item name="propertySpecifier">tcg,tsa,image_julday,plotid,b3,b2,b5,b4,tcb,b7,sensor,selected,tcw,image_year,project_id,b1,spectral_scaler,cloud_cover</item>
-    </annotation>
-    <property name="tcg" type="string" required="true"/>
-    <property name="tsa" type="integer" required="true"/>
-    <property name="target_day" type="integer" required="true"/>
-    <property name="image_julday" type="integer" required="true"/>
-    <property name="plotid" type="integer" required="true"/>
-    <property name="b3" type="string" required="true"/>
-    <property name="b2" type="string" required="true"/>
-    <property name="b5" type="string" required="true"/>
-    <property name="b4" type="string" required="true"/>
-    <property name="tcb" type="string" required="true"/>
-    <property name="b7" type="string" required="true"/>
-    <property name="sensor" type="string" required="true"/>
-    <property name="selected" type="integer" required="true"/>
-    <property name="tcw" type="string" required="true"/>
-    <property name="image_year" type="integer" required="true"/>
-    <property name="project_id" type="integer" required="true"/>
-    <property name="b1" type="string" required="true"/>
-    <property name="spectral_scaler" type="integer" required="true"/>
-    <property name="cloud_cover" type="integer" required="true"/>
-  </entity>
-  <service name="ImageListService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">ImageListService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">org.larse.services</item>
-      <item name="Endpoint">gateway.php</item>
-      <item name="Destination">ImageListService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">PHP</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/ImageListService.php</item>
-      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
-      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
-      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/ImageListService.php</item>
-      <item name="LINKED_FILE">ImageListService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
-      <item name="PHP_CLASS_NAME">ImageListService</item>
-    </annotation>
-    <function name="getImageList" return-type="ImageList[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">tsa,project_id,year,julday,type</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-        <item name="inputParams">integer,integer</item>
-        <item name="inputParamNames">project_id,tsa</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-    </function>
-  </service>
-  <entity name="ImageList">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">ImageList</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">ImageListService</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="getImageList">
-      <item name="propertySpecifier">tsa,project_id,year,julday,type</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">org.larse.vos</item>
-    </annotation>
-    <property name="tsa" type="integer" required="true"/>
-    <property name="project_id" type="integer" required="true"/>
-    <property name="year" type="integer" required="true"/>
-    <property name="julday" type="integer" required="true"/>
-    <property name="type" type="string" required="true"/>
-  </entity>
-  <service name="PlotsService">
-    <annotation name="ActionScriptGeneration">
-      <item name="Source">PlotsService</item>
-      <item name="ServiceType">RemoteObject</item>
-      <item name="Package">org.larse.services</item>
-      <item name="Endpoint">gateway.php</item>
-      <item name="Destination">PlotsService</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">PHP</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="PHP_RELATIVE_LOCATION">timesync-debug/services/PlotsService.php</item>
-      <item name="PHP_SERVER_ROOT">/Users/yang/MWorkspace/PHPWEB/WWW/public</item>
-      <item name="DEFAULT_ENTITY_PACKAGE">org.larse.vos</item>
-      <item name="PHP_SERVICES_FOLDER">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services</item>
-      <item name="PHP_LOCATION">/Users/yang/MWorkspace/PHPWEB/WWW/public/timesync-debug/services/PlotsService.php</item>
-      <item name="LINKED_FILE">PlotsService.php</item>
-      <item name="PHP_SERVER_ROOT_URL">http://localhost:8888/</item>
-      <item name="ABSOLUTE_ENDPOINT">http://localhost:8888/timesync-debug/gateway.php</item>
-      <item name="PHP_CLASS_NAME">PlotsService</item>
-    </annotation>
-    <function name="count" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-      </annotation>
-    </function>
-    <function name="getAllPlots" return-type="Plot[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="ValidProperties">
-        <item name="propertySpecifier">tsa,is_forest,plotid,is_tiger_urban,is_example,is_wetland,lng,is_complete,project_id,y,lat,uncertainty,x</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">opaque</item>
-        <item name="inputParams">integer,integer,integer</item>
-        <item name="inputParamNames">tsa</item>
-      </annotation>
-      <parameter name="project_id" type="integer"/>
-      <parameter name="tsa" type="integer"/>
-      <parameter name="interpreter" type="integer"/>
-    </function>
-  </service>
-  <entity name="Plot">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">Plot</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">PlotsService</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="getAllPlots">
-      <item name="propertySpecifier">tsa,is_forest,plotid,is_tiger_urban,is_example,is_wetland,lng,is_complete,project_id,y,lat,uncertainty,x</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">org.larse.vos</item>
-    </annotation>
-    <property name="tsa" type="integer" required="true"/>
-    <property name="is_forest" type="integer" required="true"/>
-    <property name="plotid" type="integer" required="true"/>
-    <property name="is_tiger_urban" type="integer" required="true"/>
-    <property name="is_example" type="integer" required="true"/>
-    <property name="is_wetland" type="integer" required="true"/>
-    <property name="lng" type="double" required="true" default="0"/>
-    <property name="is_complete" type="integer" required="true"/>
-    <property name="project_id" type="integer" required="true"/>
-    <property name="y" type="double" required="true" default="0"/>
-    <property name="lat" type="double" required="true" default="0"/>
-    <property name="uncertainty" type="integer" required="true"/>
-    <property name="x" type="double" required="true" default="0"/>
   </entity>
 </model>
